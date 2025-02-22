@@ -6,6 +6,8 @@ Snapshot version: 2.1.0-SNAPSHOT
 
 Prototype support for Postgresql `unnest` table function 
 
+see issue https://github.com/sqldelight/sqldelight/issues/5346
+
 e.g
 ```sql
 CREATE TABLE Business(
