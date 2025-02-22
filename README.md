@@ -4,7 +4,21 @@ https://github.com/cashapp/sqldelight
 
 Snapshot version: 2.1.0-SNAPSHOT
 
-Prototype support for `unnest` table function 
+Prototype support for Postgresql `unnest` table function 
+
+e.g
+```sql
+CREATE TABLE Business(
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    zipcodes TEXT[] NOT NULL,
+    headcounts INTEGER[] NOT NULL
+);
+
+select:
+SELECT name, location.headcount, location.zipcode
+FROM Business, UNNEST(zipcodes, headcounts) AS location(zipcode, headcount);
+```
 
 ```shell
 createdb unnestdb &&
