@@ -1,0 +1,6 @@
+CREATE TABLE Business(
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    zipcodes TEXT[] NOT NULL,
+    headcounts INTEGER[] NOT NULL
+);

@@ -1,0 +1,11 @@
+insert:
+INSERT INTO Business (name, zipcodes, headcounts) VALUES (?, ?, ?);
+
+select:
+SELECT name, location.headcount, location.zipcode
+FROM Business, UNNEST(zipcodes, headcounts) AS location(zipcode, headcount);
+
+selectLocation:
+SELECT name, location.zipcode
+FROM Business, UNNEST(zipcodes) AS location(zipcode)
+  WHERE LOWER(location.zipcode) LIKE '%' || LOWER(:query) || '%';
