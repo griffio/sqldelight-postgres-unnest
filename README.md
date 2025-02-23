@@ -6,6 +6,7 @@ Snapshot version: 2.1.0-SNAPSHOT
 
 Prototype support for Postgresql `unnest` table function 
 
+
 *Issues*
 * IN PROGRESS https://github.com/sqldelight/sqldelight/issues/5346
 
@@ -21,6 +22,11 @@ CREATE TABLE Business(
 select:
 SELECT name, location.headcount, location.zipcode
 FROM Business, UNNEST(zipcodes, headcounts) AS location(zipcode, headcount);
+
+counts:
+SELECT name, UNNEST(headcounts) AS headcount
+FROM Business
+ORDER BY headcount DESC;
 ```
 
 ```shell
