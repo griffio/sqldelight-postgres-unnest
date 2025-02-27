@@ -15,4 +15,9 @@ fun main() {
     sample.salesQueries.insert("McDoggies", arrayOf("57214-A", "TU-1225", "14754-Z"), arrayOf(8, 12, 7))
     sample.salesQueries.insert("Donut Hut", arrayOf("13214-Q", "H2251", "13FF-H"), arrayOf(4, 24, 8))
     sample.salesQueries.select().executeAsList().map(::println)
+    sample.salesQueries.selectMaxHeadcount().executeAsList().map(::println)
+    sample.salesQueries.insertUsers(arrayOf("a", "b", "c"), arrayOf(1, 2, 3))
+    sample.salesQueries.updateUsers(arrayOf("a", "b"), arrayOf(31, 47))
+    sample.salesQueries.select().executeAsList().map(::println)
+    sample.salesQueries.selectUsers().executeAsList().map(::println)
 }

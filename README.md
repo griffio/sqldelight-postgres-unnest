@@ -6,6 +6,10 @@ Snapshot version: 2.1.0-SNAPSHOT
 
 Prototype support for Postgresql `unnest` table function 
 
+* function
+* table row function
+* bulk updates
+
 *Issues*
 * IN PROGRESS https://github.com/sqldelight/sqldelight/issues/5346
 
@@ -38,6 +42,13 @@ SELECT unnest(ARRAY[1,2]);
 insertUsers:
 INSERT INTO Users (name, age)
 SELECT * FROM UNNEST(?::TEXT[], ?::INTEGER[]);
+
+updateUsers:
+UPDATE Users
+SET age=updates.updated_age
+FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS updates(name, updated_age)
+WHERE Users.name = updates.name;
+
 ```
 
 ```shell

@@ -9,3 +9,21 @@ selectLocation:
 SELECT name, location.zipcode
 FROM Business, UNNEST(zipcodes) AS location(zipcode)
   WHERE LOWER(location.zipcode) LIKE '%' || LOWER(:query) || '%';
+
+selectMaxHeadcount:
+SELECT name, UNNEST(headcounts) AS headcount
+FROM Business
+ORDER BY headcount DESC;
+
+selectUsers:
+SELECT * FROM Users;
+
+insertUsers:
+INSERT INTO Users (name, age)
+SELECT * FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS u(name, age);
+
+updateUsers:
+UPDATE Users
+SET age=updates.updated_age
+FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS updates(name, updated_age)
+WHERE Users.name = updates.name;

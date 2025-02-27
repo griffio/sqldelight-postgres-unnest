@@ -4,3 +4,8 @@ CREATE TABLE Business(
     zipcodes TEXT[] NOT NULL,
     headcounts INTEGER[] NOT NULL
 );
+
+CREATE TABLE Users (
+   name TEXT NOT NULL,
+   age INTEGER NOT NULL
+);
