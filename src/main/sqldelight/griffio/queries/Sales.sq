@@ -27,3 +27,10 @@ UPDATE Users
 SET age=updates.updated_age
 FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS updates(name, updated_age)
 WHERE Users.name = updates.name;
+
+deleteUsers:
+DELETE FROM Users
+WHERE (name, age) IN (
+  SELECT *
+  FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS u(name, age)
+);

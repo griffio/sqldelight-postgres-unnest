@@ -8,7 +8,7 @@ Prototype support for Postgresql `unnest` table function
 
 * function
 * table row function
-* bulk updates
+* bulk insert, delete and update
 
 *Issues*
 * IN PROGRESS https://github.com/sqldelight/sqldelight/issues/5346
@@ -48,6 +48,13 @@ UPDATE Users
 SET age=updates.updated_age
 FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS updates(name, updated_age)
 WHERE Users.name = updates.name;
+
+deleteUsers:
+DELETE FROM Users
+WHERE (name, age) IN (
+  SELECT *
+  FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS u(name, age)
+);
 
 ```
 
