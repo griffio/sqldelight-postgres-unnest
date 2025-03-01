@@ -28,4 +28,7 @@ fun main() {
     sample.salesQueries.selectUsers().executeAsList().map(::println)
     println("---------")
     sample.salesQueries.selectLocation("13ff").executeAsList().map(::println)
+    println("---------")
+    sample.salesQueries.selectLateralLocations("tu").executeAsList().map(::println)
+
 }

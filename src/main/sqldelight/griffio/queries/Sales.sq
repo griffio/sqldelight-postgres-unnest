@@ -49,3 +49,8 @@ SELECT
     zipcode
 FROM Locations
 WHERE zipcode ILIKE '%' || :query || '%';
+
+selectLateralLocations:
+SELECT DISTINCT b.*
+FROM Business b
+JOIN LATERAL UNNEST(b.zipcodes) AS loc(zipcode) ON loc.zipcode ILIKE '%' || :query || '%';
