@@ -26,4 +26,6 @@ fun main() {
     println("---------")
     sample.salesQueries.deleteUsers(arrayOf("a", "b"), arrayOf(31, 47))
     sample.salesQueries.selectUsers().executeAsList().map(::println)
+    println("---------")
+    sample.salesQueries.selectLocation("13ff").executeAsList().map(::println)
 }

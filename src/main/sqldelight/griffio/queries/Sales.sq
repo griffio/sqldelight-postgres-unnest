@@ -24,7 +24,7 @@ SELECT * FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS u(name, age);
 
 updateUsers:
 UPDATE Users
-SET age=updates.updated_age
+SET age = updates.updated_age
 FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS updates(name, updated_age)
 WHERE Users.name = updates.name;
 
@@ -34,3 +34,18 @@ WHERE (name, age) IN (
   SELECT *
   FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS u(name, age)
 );
+
+selectLocations:
+WITH Locations AS (
+    SELECT
+        b.id,
+        b.name,
+        (UNNEST(b.zipcodes)::TEXT) AS zipcode
+    FROM Business b
+)
+SELECT
+    id,
+    name,
+    zipcode
+FROM Locations
+WHERE zipcode ILIKE '%' || :query || '%';
