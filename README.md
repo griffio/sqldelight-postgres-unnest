@@ -56,7 +56,7 @@ WHERE (name, age) IN (
   FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS u(name, age)
 );
 
-selectLateralLocations:
+selectLocations:
 SELECT DISTINCT b.*
 FROM Business b
 JOIN LATERAL UNNEST(b.zipcodes) AS loc(zipcode) ON loc.zipcode ILIKE '%' || :query || '%';
