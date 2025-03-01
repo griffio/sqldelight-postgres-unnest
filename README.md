@@ -8,7 +8,7 @@ Prototype support for Postgresql `unnest` table function
 
 * function
 * table row function
-* bulk insert, delete and update
+* bulk insert, delete and upp
 
 *Issues*
 * IN PROGRESS https://github.com/sqldelight/sqldelight/issues/5346
@@ -55,6 +55,11 @@ WHERE (name, age) IN (
   SELECT *
   FROM UNNEST(?::TEXT[], ?::INTEGER[]) AS u(name, age)
 );
+
+selectLateralLocations:
+SELECT DISTINCT b.*
+FROM Business b
+JOIN LATERAL UNNEST(b.zipcodes) AS loc(zipcode) ON loc.zipcode ILIKE '%' || :query || '%';
 
 ```
 
