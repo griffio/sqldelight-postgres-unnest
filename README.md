@@ -60,6 +60,9 @@ selectLocations:
 SELECT DISTINCT b.*
 FROM Business b
 JOIN LATERAL UNNEST(b.zipcodes) AS loc(zipcode) ON loc.zipcode ILIKE '%' || :query || '%';
+--Same as above can also be written without explict join
+--SELECT DISTINCT b.*
+--FROM Business b, UNNEST(b.zipcodes) AS loc(zipcode) WHERE loc.zipcode ILIKE '%' || :query || '%';
 
 ```
 
