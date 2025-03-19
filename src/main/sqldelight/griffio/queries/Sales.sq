@@ -54,3 +54,11 @@ selectLateralLocations:
 SELECT DISTINCT b.*
 FROM Business b
 JOIN LATERAL UNNEST(b.zipcodes) AS loc(zipcode) ON loc.zipcode ILIKE '%' || :query || '%';
+
+selectBusinessExists:
+SELECT *
+FROM Business
+WHERE EXISTS (
+   SELECT 1
+   FROM UNNEST(Business.zipcodes) AS location(zipcode)
+   WHERE LOWER(location.zipcode) LIKE '%' || LOWER(?) || '%');

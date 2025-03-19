@@ -30,5 +30,7 @@ fun main() {
     sample.salesQueries.selectLocation("13ff").executeAsList().map(::println)
     println("---------")
     sample.salesQueries.selectLateralLocations("tu").executeAsList().map(::println)
+    println("---------")
+    sample.salesQueries.selectBusinessExists("13FF-H").executeAsList().map(::println)
 
 }
