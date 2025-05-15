@@ -1,6 +1,6 @@
 pluginManagement {
     repositories {
-        mavenLocal()
+        maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
         gradlePluginPortal()
         mavenCentral()
     }
@@ -15,7 +15,7 @@ rootProject.name = "sqldelight-postgres-unnest"
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            val vSqlDelight = "FIXME"
+            val vSqlDelight = "2.1.0-SNAPSHOT"
             plugin("kotlin", "org.jetbrains.kotlin.jvm").version("1.9.20")
             plugin("sqldelight", "app.cash.sqldelight").version(vSqlDelight)
             plugin("flyway", "org.flywaydb.flyway").version("10.1.0")
