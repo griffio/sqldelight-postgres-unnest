@@ -8,10 +8,10 @@ Prototype support for Postgresql `unnest` table function
 
 * function
 * table row function
-* bulk insert, delete and upp
+* bulk insert, delete and update using arrays
 
 *Issues*
-* IN PROGRESS https://github.com/sqldelight/sqldelight/issues/5346
+* MERGED https://github.com/sqldelight/sqldelight/issues/5346
 
 e.g Supported
 ```sql
@@ -59,10 +59,10 @@ WHERE (name, age) IN (
 selectLocations:
 SELECT DISTINCT b.*
 FROM Business b
-JOIN LATERAL UNNEST(b.zipcodes) AS loc(zipcode) ON loc.zipcode ILIKE '%' || :query || '%';
+JOIN LATERAL UNNEST(b.zipcodes) AS loc(zipcode) ON loc.zipcode ILIKE '%' || :query::TEXT || '%';
 --Same as above can also be written without explict join
 --SELECT DISTINCT b.*
---FROM Business b, UNNEST(b.zipcodes) AS loc(zipcode) WHERE loc.zipcode ILIKE '%' || :query || '%';
+--FROM Business b, UNNEST(b.zipcodes) AS loc(zipcode) WHERE loc.zipcode ILIKE '%' || :query::TEXT || '%';
 
 ```
 
