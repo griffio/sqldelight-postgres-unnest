@@ -2,7 +2,7 @@
 
 https://github.com/cashapp/sqldelight
 
-Snapshot version: 2.1.0-SNAPSHOT
+Version: 2.1.0
 
 Prototype support for Postgresql `unnest` table function 
 
